@@ -16,12 +16,8 @@ y = zeros(1, nTs);
 
 for t=2:nTs, 
     y(t) = w * y(t-1) + v*x(t-1);
-    if y(t) < cut, 
-        y(t) = cut;
-    end
-    if y(t) > sat,
-        y(t) = sat; 
-    end
+    if y(t) < cut,  y(t) = cut; end
+    if y(t) > sat,  y(t) = sat; end
 end
 
 lw = 3;
@@ -33,6 +29,14 @@ subplot(2,1,1)
 plot(tBase, x, 'k', 'linewidth', lw)
 axis([0 tEnd 0 1.1])
 xlabel('time step','fontsize', fs)
-ylabel('output','fontsize', fs)
+ylabel('input','fontsize', fs)
 set(gca, 'fontsize', fs)
-set(gca, 'fontsize', lw)
+set(gca, 'linewidth', lw)
+
+subplot(2,1,2)
+plot(tBase, y, 'k', 'linewidth', lw)
+axis([0 tEnd 0 1.1*max(y)])
+xlabel('time step','fontsize',fs)
+ylabel('output','fontsize',fs)
+set(gca,'fontsize',fs)
+set(gca,'linewidth',lw)

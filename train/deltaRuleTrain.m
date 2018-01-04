@@ -1,4 +1,4 @@
-a=0.1;
+a=0.1; %학습하는 속도가 달라짐
 tol=0.01;
 nIts=100000;
 [nPat,nIn]=size(InPat);

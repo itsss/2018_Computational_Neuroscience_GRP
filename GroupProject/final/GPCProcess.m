@@ -17,6 +17,8 @@ for j=1:160 % 160번 실험하므로
     break;
     end
     arr(k)=arr(k)-1;
+
+    % 4, 8, 16, 32 구별 코드 수정
     if k >= 1 && k <= 4
       N=4;
     elseif k >= 5 && k <= 8
@@ -40,6 +42,7 @@ for j=1:160 % 160번 실험하므로
       popout = 1;
       target = 1;
     end
+    % popout, target 구별 코드 수정
 
     draw(N,target,popout);
 

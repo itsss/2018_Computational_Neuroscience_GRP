@@ -1,14 +1,14 @@
-popdata=zeros(4); % Pop-Out ±×¸²¿¡ ´ëÇÑ ÀÀ´ä ½Ã°£ µ¥ÀÌÅÍ
-condata=zeros(4); % conjunction ±×¸²¿¡ ´ëÇÑ ÀÀ´ä ½Ã°£ µ¥ÀÌÅÍ
+popdata=zeros(4); % Pop-Out ê·¸ë¦¼ì— ëŒ€í•œ ì‘ë‹µ ì‹œê°„ ë°ì´í„°
+condata=zeros(4); % conjunction ê·¸ë¦¼ì— ëŒ€í•œ ì‘ë‹µ ì‹œê°„ ë°ì´í„°
 popcnt=zeros(4);
 concnt=zeros(4);
-trust=1; % ½Å·Úµµ(% ´ÜÀ§)
+trust=1; % ì‹ ë¢°ë„(% ë‹¨ìœ„)
 
 GPCExplain;
 
-for j=1:160 % 160¹ø ½ÇÇèÇÏ¹Ç·Î
-    
-    pause(0.1); % 2ÃÊ ´ë±â
+for j=1:160 % 160ë²ˆ ì‹¤í—˜í•˜ë¯€ë¡œ
+
+    pause(0.1); % 2ì´ˆ ëŒ€ê¸°
     figure;
     arr = ones(16, 1)*10;
     k=randi(16);
@@ -17,107 +17,50 @@ for j=1:160 % 160¹ø ½ÇÇèÇÏ¹Ç·Î
     break;
     end
     arr(k)=arr(k)-1;
-    if k==1
-    N=4;
-    popout=1;
-    target=1;
+    if k >= 1 && k <= 4
+      N=4;
+    elseif k >= 5 && k <= 8
+      N=8;
+    elseif k >= 9 && k <= 12
+      N=16;
+    else
+      N=32;
     end
-    if k==2
-    N=4;
-    popout=1;
-    target=0;
-    end
-    if k==3
-    N=4;
-    popout=0;
-    target=1;
-    end
-    if k==4
-    N=4;
-    popout=0;
-    target=0;
-    end
-    if k==5
-    N=8;
-    popout=1;
-    target=1;
-    end
-    if k==6
-    N=8;
-    popout=1;
-    target=0;
-    end
-    if k==7
-    N=8;
-    popout=0;
-    target=1;
-    end
-    if k==8
-    N=8;
-    popout=0;
-    target=0;
-    end
-    if k==9
-    N=16;
-    popout=1;
-    target=1;
-    end
-    if k==10
-    N=16;
-    popout=1;
-    target=0;
-    end
-    if k==11
-    N=16;
-    popout=0;
-    target=1;
-    end
-    if k==12
-    N=16;
-    popout=0;
-    target=0;
-    end
-    if k==13
-    N=32;
-    popout=1;
-    target=1;
-    end
-    if k==14
-    N=32;
-    popout=1;
-    target=0;
-    end
-    if k==15
-    N=32;
-    popout=0;
-    target=1;
-    end
-    if k==16
-    N=32;
-    popout=0;
-    target=0;
+
+    if rem(k,4) == 0
+      popout = 0;
+      target = 0;
+    elseif rem(k+1,4) == 0
+      popout = 0;
+      target = 1;
+    elseif rem(k+2, 4) == 0
+      popout = 1;
+      target = 0;
+    else
+      popout = 1;
+      target = 1;
     end
 
     draw(N,target,popout);
 
-    tic; % ½Ã°£ÃøÁ¤ ½ÃÀÛ
-    waitforbuttonpress; % Ã£À»½Ã ½Ã°£ Á¤Áö
+    tic; % ì‹œê°„ì¸¡ì • ì‹œìž‘
+    waitforbuttonpress; % ì°¾ì„ì‹œ ì‹œê°„ ì •ì§€
     close all;
-    time=toc; % ½Ã°£ÃøÁ¤ ¿Ï·á, ¼Ò¿ä ½Ã°£À» time º¯¼ö¿¡ ÀúÀå
+    time=toc; % ì‹œê°„ì¸¡ì • ì™„ë£Œ, ì†Œìš” ì‹œê°„ì„ time ë³€ìˆ˜ì— ì €ìž¥
     %plot(1);
     axis([0 30 0 30]);
-    response=input('Ã£À¸¼ÌÀ¸¸é 1, Á¸ÀçÇÏÁö ¾ÊÀ¸¸é 0À» ÀÔ·ÂÇÏ°í ¿£ÅÍ Å°¸¦ ´­·¯ÁÖ½Ê½Ã¿À.'); % »ç¿ëÀÚ ÀÀ´ä ¹ÞÀ½
+    response=input('ì°¾ìœ¼ì…¨ìœ¼ë©´ 1, ì¡´ìž¬í•˜ì§€ ì•Šìœ¼ë©´ 0ì„ ìž…ë ¥í•˜ê³  ì—”í„° í‚¤ë¥¼ ëˆŒëŸ¬ì£¼ì‹­ì‹œì˜¤.'); % ì‚¬ìš©ìž ì‘ë‹µ ë°›ìŒ
 
-    % °á°ú Ã³¸®
-    if(popout) % ÆË¾Æ¿ô ±×¸²ÀÎ°¡?
-        if(target) % Á¸ÀçÇÏ´Â°¡?
-            if(response) % Á¸ÀçÇÑ´Ù°í ´äÇß´Â°¡?
+    % ê²°ê³¼ ì²˜ë¦¬
+    if(popout) % íŒì•„ì›ƒ ê·¸ë¦¼ì¸ê°€?
+        if(target) % ì¡´ìž¬í•˜ëŠ”ê°€?
+            if(response) % ì¡´ìž¬í•œë‹¤ê³  ë‹µí–ˆëŠ”ê°€?
                 popdata(log2(N)-1)=popdata(log2(N)-1)+time;
-                % µ¥ÀÌÅÍ Ã³¸®
+                % ë°ì´í„° ì²˜ë¦¬
             else
                 trust=trust-1/160;
                 popcnt(log2(N)-1)=popcnt(log2(N)-1)+1;
-                % Àß¸øµÈ ´äº¯À» ÇÒ °æ¿ì, ½Å·Úµµ °¨¼Ò
+                % ìž˜ëª»ëœ ë‹µë³€ì„ í•  ê²½ìš°, ì‹ ë¢°ë„ ê°ì†Œ
             end
         else
             if(response)
@@ -163,6 +106,4 @@ xlabel('size of map')
 ylabel('reaction time')
 hold off
 
-% ±×·¡ÇÁ¿Í ½Å·Úµµ ¶ç¿ì±â
-
-
+% ê·¸ëž˜í”„ì™€ ì‹ ë¢°ë„ ë„ìš°ê¸°

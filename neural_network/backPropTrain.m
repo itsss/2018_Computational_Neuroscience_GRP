@@ -45,5 +45,9 @@ for c=1:nIts,
     if maxErr<tol, break, end, 
 end 
 
+%see graph => plot(Out, 'o')
+%see image => imagesc(U) or imagesc(V)
+%Train 이후의 결과 (U와 V) 
+
 %clf;
 %plot([1:nPat],DesOut,'o',[1:nPat],Out,'rx');

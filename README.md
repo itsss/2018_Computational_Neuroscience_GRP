@@ -29,3 +29,4 @@
 ## 4일차 (2018.01.05)
 - DesOut, InPat 수정 및 deltaRuleTrain Code 수정
 - Supervised Learning 실습
+- Understanding AND, OR, XOR logic gate in Machine Learning

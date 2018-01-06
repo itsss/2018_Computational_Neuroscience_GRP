@@ -19,15 +19,8 @@ for j=1:160 % 160번 실험하므로
     arr(k)=arr(k)-1;
 
     % 4, 8, 16, 32 구별 코드 수정
-    if k >= 1 && k <= 4
-      N=4;
-    elseif k >= 5 && k <= 8
-      N=8;
-    elseif k >= 9 && k <= 12
-      N=16;
-    else
-      N=32;
-    end
+    NumItems = [4,4,4,4,8,8,8,8,16,16,16,16,32,32,32,32];
+    N=NumItem(k);
 
     if rem(k,4) == 0
       popout = 0;

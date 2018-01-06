@@ -31,3 +31,6 @@
 - Supervised Learning 실습
 - Understanding AND, OR, XOR logic gate in Machine Learning
 - Handwritting 실습
+
+## 5일차 (2018.01.06)
+- Understanding Back Propagation and Hidden Layer
